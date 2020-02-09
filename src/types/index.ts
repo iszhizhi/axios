@@ -15,7 +15,7 @@ export type Method =
   | 'OPTIONS'
 
 export interface AxiosRequestConfig {
-  url: string
+  url?: string
   method?: Method
   data?: any
   params?: any
@@ -41,4 +41,20 @@ export interface AxiosError extends Error {
   request?: any
   response?: any
   isAxiosError: boolean
+}
+
+export interface Axios {
+  request(config: AxiosRequestConfig): AxiosPromise
+  get(url: string, config?: AxiosPromise): AxiosPromise
+  delete(url: string, config?: AxiosPromise): AxiosPromise
+  head(url: string, config?: AxiosPromise): AxiosPromise
+  options(url: string, config?: AxiosPromise): AxiosPromise
+  put(url: string, data?: any, config?: AxiosPromise): AxiosPromise
+  push(url: string, data?: any, config?: AxiosPromise): AxiosPromise
+  petch(url: string, data?: any, config?: AxiosPromise): AxiosPromise
+}
+
+// 混合对象
+export interface AxiosInstance extends Axios {
+  (config: AxiosRequestConfig): AxiosPromise
 }
