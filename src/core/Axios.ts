@@ -2,7 +2,15 @@ import { AxiosRequestConfig, AxiosPromise } from '../types/index'
 import dispatchRequest from './dispatchRequest'
 
 export class Axios {
-  request(config: AxiosRequestConfig) {
+  request(url:any,config?:any) {
+    if(typeof url==='string'){
+      if(!config){
+        config={}
+      }
+      config.url=url
+    }else{
+      config=url
+    }
     return dispatchRequest(config)
   }
 
